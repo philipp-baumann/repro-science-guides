@@ -1,6 +1,15 @@
 ---
 title: "Notes on R package development"
-output: pdf_document
+output: 
+  github_document:
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: true
+    toc_depth: 2
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
@@ -9,9 +18,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Prerequisites
 
-Package development is based on the helper package `usethis`, and 
+Package development is based on the helper package `usethis`, and
 `here` package to set the project root. The notes are based on the information
-provided in [**this package online reference**](http://usethis.r-lib.org/)
+provided in [**this online package reference**](http://usethis.r-lib.org/)
 
 ```{r}
 library("usethis")
@@ -62,8 +71,15 @@ explains further how to setup and invoke R package development workflow
 functions. It provides a good overview how to integrate git version control and
 how to install package building tools, e.g. compilers.
 
-1. Set up interactive mode. This will open the `.Rprofile` file 
-
+1. Set up interactive mode. This will open the `.Rprofile` file. This user 
+   profile is sourced into the project workspace when opening the project,
+   which will automatically attach the `usethis` and `devtools` packages
+   upon startup. `.Rprofile` belongs to one the *profile* type of files and 
+   contains R code. There is an other type of startup files, 
+   *environment files*, which contain lists of environment variables to be set.
+   After running the the below command and when restarting, you will always have
+   these two packages attached and you can direcly use the functions without
+   having to qualify with `usethis::<fun_name>`.
 ```{r, eval=FALSE}
 usethis::use_usethis()
 ```
@@ -76,7 +92,5 @@ if (interactive()) {
 ```
 
 
-
-# Initiate a github repositiory 
-
+# Initiate a github repositiory
 
